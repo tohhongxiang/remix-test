@@ -1,37 +1,62 @@
-import { cssBundleHref } from "@remix-run/css-bundle";
 import type { LinksFunction } from "@remix-run/node";
+import tailwindStylesheet from "~/styles/tailwind.css";
+import Document from "./Document";
+import Layout from "./components/Layout";
 import {
     Links,
-    LiveReload,
     Meta,
     Outlet,
     Scripts,
-    ScrollRestoration,
+    isRouteErrorResponse,
+    useRouteError,
 } from "@remix-run/react";
-import stylesheet from "~/tailwind.css";
+import Alert from "./components/Alert";
+import { IconAlertTriangleFilled } from "@tabler/icons-react";
+import mantineStyleSheet from "@mantine/core/styles.css";
 
 export const links: LinksFunction = () => [
-    { rel: "stylesheet", href: stylesheet },
+    { rel: "stylesheet", href: tailwindStylesheet },
+    { rel: "stylesheet", href: mantineStyleSheet },
 ];
 
 export default function App() {
     return (
-        <html lang="en">
-            <head>
-                <meta charSet="utf-8" />
-                <meta
-                    name="viewport"
-                    content="width=device-width, initial-scale=1"
-                />
-                <Meta />
-                <Links />
-            </head>
-            <body>
+        <Document title="Language Learner">
+            <Layout>
                 <Outlet />
-                <ScrollRestoration />
-                <Scripts />
-                <LiveReload />
-            </body>
-        </html>
+            </Layout>
+        </Document>
     );
 }
+
+// export function ErrorBoundary() {
+//     const error = useRouteError();
+//     console.error(error);
+
+//     return (
+//         <Document title="Oh no">
+//             <Layout>
+//                 <div className="px-16 py-8">
+//                     {isRouteErrorResponse(error) && (
+//                         <Alert
+//                             title={error.statusText}
+//                             type="danger"
+//                             titleIcon={<IconAlertTriangleFilled />}
+//                         >
+//                             <p>{error.data}</p>
+//                         </Alert>
+//                     )}
+//                     {error instanceof Error && (
+//                         <Alert
+//                             title={"Error"}
+//                             type="danger"
+//                             titleIcon={<IconAlertTriangleFilled />}
+//                         >
+//                             <p>{error.message}</p>
+//                         </Alert>
+//                     )}
+//                 </div>
+//             </Layout>
+//         </Document>
+//     );
+// }
