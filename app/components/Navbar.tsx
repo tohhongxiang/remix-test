@@ -1,14 +1,17 @@
 import {
     ActionIcon,
+    Button,
     Drawer,
     NavLink as MantineNavLink,
     useMantineColorScheme,
 } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
-import { Link, useLocation } from "@remix-run/react";
+import { Form, Link, useLocation } from "@remix-run/react";
 import { IconMenu2, IconMoon, IconSun } from "@tabler/icons-react";
 import { NavLink } from "@remix-run/react";
 import { useEffect } from "react";
+import { User } from "~/types/User";
+import { useAuthenticatedUser } from "~/contexts/UserContext";
 
 export default function Navbar({
     links,
@@ -21,6 +24,8 @@ export default function Navbar({
     useEffect(() => {
         close();
     }, [pathname]);
+
+    const { user } = useAuthenticatedUser();
 
     const { setColorScheme, colorScheme } = useMantineColorScheme();
     return (
@@ -45,6 +50,41 @@ export default function Navbar({
                             </NavLink>
                         </li>
                     ))}
+                    {!user ? (
+                        <>
+                            <li>
+                                <NavLink
+                                    to={"/login"}
+                                    className={({ isActive }) =>
+                                        isActive ? "font-bold" : ""
+                                    }
+                                >
+                                    Login
+                                </NavLink>
+                            </li>
+                            <li>
+                                <NavLink
+                                    to={"/signup"}
+                                    className={({ isActive }) =>
+                                        isActive ? "font-bold" : ""
+                                    }
+                                >
+                                    Sign Up
+                                </NavLink>
+                            </li>
+                        </>
+                    ) : (
+                        <li>
+                            <NavLink
+                                to={"/logout"}
+                                className={({ isActive }) =>
+                                    isActive ? "font-bold" : ""
+                                }
+                            >
+                                Log Out
+                            </NavLink>
+                        </li>
+                    )}
                     <li className="flex items-center justify-center">
                         <ActionIcon
                             variant="subtle"
