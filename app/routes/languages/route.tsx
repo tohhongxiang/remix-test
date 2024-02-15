@@ -7,13 +7,14 @@ import {
     Outlet,
     useLoaderData,
 } from "@remix-run/react";
+import { IconLogout } from "@tabler/icons-react";
 import { useEffect } from "react";
 import { useAuthenticatedUser } from "~/contexts/UserContext";
 import { authenticator } from "~/services/auth.server";
 
 export const meta: MetaFunction = () => [
     {
-        title: "Note",
+        title: "Languages",
     },
 ];
 
@@ -37,9 +38,9 @@ export const action: ActionFunction = async ({ request }) => {
     return null;
 };
 
-const links = [{ href: "/notes", label: "Notes" }];
+const links = [{ href: "/languages", label: "Languages" }];
 
-export default function Notes() {
+export default function Languages() {
     const { user } = useLoaderData<typeof loader>();
     const { setUser } = useAuthenticatedUser();
 
@@ -50,8 +51,7 @@ export default function Notes() {
     return (
         <div className="flex h-full">
             <div>
-                <p>Logged in as: {user.name}</p>
-                <ul className="flex flex-col w-[300px] border-r border-gray-600/10">
+                <ul className="flex flex-col w-[300px] border-r border-gray-600/10 h-full">
                     {links.map((link) => (
                         <NavLink
                             to={link.href}
@@ -65,9 +65,16 @@ export default function Notes() {
                             </li>
                         </NavLink>
                     ))}
-                    <li>
+                    <li className="mt-auto p-4">
                         <Form method="post">
-                            <Button type="submit" name="action" value="logout">
+                            <Button
+                                type="submit"
+                                name="action"
+                                value="logout"
+                                leftSection={<IconLogout />}
+                                fullWidth
+                                variant="subtle"
+                            >
                                 Log out
                             </Button>
                         </Form>

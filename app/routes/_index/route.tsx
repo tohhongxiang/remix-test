@@ -1,14 +1,13 @@
 import { Button } from "@mantine/core";
 import { LoaderFunctionArgs } from "@remix-run/node";
-import { Link, MetaFunction, useLoaderData } from "@remix-run/react";
-import Layout from "~/components/Layout";
+import { Link, MetaFunction } from "@remix-run/react";
 import { authenticator } from "~/services/auth.server";
 
 export const meta: MetaFunction = () => [{ title: "Home page" }];
 
 export const loader = async ({ request }: LoaderFunctionArgs) => {
     const user = await authenticator.isAuthenticated(request, {
-        successRedirect: "/notes",
+        successRedirect: "/languages",
     });
     return { user };
 };

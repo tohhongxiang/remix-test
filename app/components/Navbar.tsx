@@ -1,5 +1,6 @@
 import {
     ActionIcon,
+    Avatar,
     Button,
     Drawer,
     NavLink as MantineNavLink,
@@ -73,18 +74,7 @@ export default function Navbar({
                                 </NavLink>
                             </li>
                         </>
-                    ) : (
-                        <li>
-                            <NavLink
-                                to={"/logout"}
-                                className={({ isActive }) =>
-                                    isActive ? "font-bold" : ""
-                                }
-                            >
-                                Log Out
-                            </NavLink>
-                        </li>
-                    )}
+                    ) : null}
                     <li className="flex items-center justify-center">
                         <ActionIcon
                             variant="subtle"

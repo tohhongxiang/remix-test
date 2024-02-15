@@ -30,7 +30,7 @@ export const loader = async ({ request }: LoaderFunctionArgs) => {
 
 export const action: ActionFunction = async ({ request }) => {
     return await authenticator.authenticate("form", request, {
-        successRedirect: "/notes",
+        successRedirect: "/languages",
         failureRedirect: "/login",
     });
 };
