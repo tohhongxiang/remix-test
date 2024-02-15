@@ -63,9 +63,9 @@ export default function NotesIndex() {
                                 padding="lg"
                                 radius="md"
                                 withBorder
-                                className="hover:scale-105 transition-all duration-75"
+                                className="hover:scale-105 transition-all duration-75 h-full"
                             >
-                                <Card.Section>
+                                <Card.Section className="h-full">
                                     <Image
                                         src={language.image}
                                         height={160}

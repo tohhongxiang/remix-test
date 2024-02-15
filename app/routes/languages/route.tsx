@@ -1,4 +1,4 @@
-import { Button } from "@mantine/core";
+import { Button, ScrollArea } from "@mantine/core";
 import { ActionFunction, LoaderFunctionArgs } from "@remix-run/node";
 import {
     Form,
@@ -49,7 +49,7 @@ export default function Languages() {
     }, [user]);
 
     return (
-        <div className="flex h-full">
+        <div className="flex flex-1">
             <div>
                 <ul className="flex flex-col w-[300px] border-r border-gray-600/10 h-full">
                     {links.map((link) => (
@@ -81,7 +81,7 @@ export default function Languages() {
                     </li>
                 </ul>
             </div>
-            <div className="grow">
+            <div>
                 <Outlet />
             </div>
         </div>
