@@ -29,11 +29,7 @@ export default function Document({
             <body>
                 <MantineProvider>
                     {children}
-
-                    {/*Enable live reload in development environment only, not production */}
-                    {process.env.NODE_ENV === "development" ? (
-                        <LiveReload />
-                    ) : null}
+                    <LiveReload />
                     <ScrollRestoration />
                     <Scripts />
                 </MantineProvider>

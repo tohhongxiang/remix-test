@@ -17,9 +17,9 @@ export default function Layout({
     user?: User | null;
 }) {
     return (
-        <div className="w-full h-full">
+        <div className="w-screen h-screen flex flex-col">
             <Navbar links={links} />
-            <main className="w-full h-full">{children}</main>
+            <main className="flex flex-col flex-1">{children}</main>
         </div>
     );
 }
